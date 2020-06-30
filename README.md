@@ -1,39 +1,18 @@
 # minilisp
 
-Small minimalistic LISP interpreter
+Fork of https://github.com/mafintosh/minilisp
 
-```
-npm install minilisp
-```
 
 ## Usage
 
-``` js
-const minilisp = require('minilisp')
+Look main.ly to see the example.
 
-// Define your functions.
-// Notice all values/statements are functions that can be resolved lazily.
-const lisp = minilisp(function (name) {
-  if (name === '+') {
-    return function (a, b) {
-      return a() + b()
-    }
-  }
-  if (name === '-') {
-    return function (a, b) {
-      return a() - b()
-    }
-  }
-})
+Run the compiler wrapper:
+`
+node example.js
+`
 
-// Compile your program
-const prog = lisp(`
-  (+ 1 (- 3 2))
-`)
-
-// And run it
-console.log(prog()) // prints 2!
-```
+Now run compiled generated: `node compiled.js`
 
 ## License
 

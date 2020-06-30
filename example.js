@@ -1,24 +1,9 @@
-const minilisp = require('./')
+const fs = require('fs')
 
-// Define your functions.
-// Notice all values/statements are functions that can be resolved lazily.
-const lisp = minilisp(function (name) {
-  if (name === '+') {
-    return function (a, b) {
-      return a() + b()
-    }
-  }
-  if (name === '-') {
-    return function (a, b) {
-      return a() - b()
-    }
-  }
-})
+const lispy = require('./lispy.js')
 
-// Compile your program
-const prog = lisp(`
-  (+ 1 (- 3 2))
-`)
+const main = fs.readFileSync('./main.ly', 'utf-8');
 
-// And run it
-console.log(prog()) // prints 2!
+const prog = lispy(main);
+
+fs.writeFileSync('./compiled.js', prog);
